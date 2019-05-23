@@ -1,6 +1,6 @@
 "use strict";
 
-var funds = 50; // 시작 조건인 돈
+var funds = 50; // 시작 조건
 
 var round = 0;
 
@@ -28,11 +28,10 @@ var _loop = function _loop() {
     var remaining = totalBet;
 
     do {
-      var _bet = rand(1, remaining);
-
+      var bet = rand(1, remaining);
       var face = randFace();
-      bets[face] = bets[face] + _bet;
-      remaining -= _bet;
+      bets[face] = bets[face] + bet;
+      remaining -= bet;
     } while (remaining > 0);
   }
 
@@ -53,7 +52,7 @@ var _loop = function _loop() {
 
   for (var die = 0; die < hand.length; die++) {
     var _face = hand[die];
-    if (bets[_face] > 0) winnings += bet[_face];
+    if (bets[_face] > 0) winnings += bets[_face];
   }
 
   funds += winnings;
