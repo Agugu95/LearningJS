@@ -3,17 +3,17 @@ const babel = require('gulp-babel');
 const eslint = require('gulp-eslint');
 // 걸프 의존성을 여기에 씁니다.
 
-gulp.task('default', function() {
+gulp.task('default', () => {
     // 걸프 작업을 여기에 씁니다.
     gulp.src(['es6/**/*.js', 'public/es6/**/*.js'])
         .pipe(eslint())
-        .pipe(eslint.format());	
+        .pipe(eslint.format());
     // 노드 소스 babel
     gulp.src('es6/**/*.js')
         .pipe(babel())
         .pipe(gulp.dest('dist'));
 
-    //브라우저 소스 babel
+    // 브라우저 소스 babel
     gulp.src('public/es6/**/*.js')
         .pipe(babel())
         .pipe(gulp.dest('public/dist'));
