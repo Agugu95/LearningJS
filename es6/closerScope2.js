@@ -6,7 +6,7 @@ function hello(name) {
 }
 
 const hello1 = hello('');
-const hello2 = hello('closer');
+const hello2 = hello('closure');
 const hello3 = hello('memories scope');
 
 hello1('really'); // 객체의 호출
