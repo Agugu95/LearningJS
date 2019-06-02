@@ -14,7 +14,7 @@ var i;
 for (i = 5; i >= 0; i--) {
     ((i) => {
         setTimeout(function () {
-            console.log(i === 0 ? "go" : i);
+            console.count(i === 0 ? "go" : i);
         }, (5 - i) * 1000);
     })(i);
 }
