@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Simple HTML</title>
+    <style>
+        .callout {
+            border: solid 1px #ff0080;
+            margin: 2px 4px;
+            padding: 2px 6px;
+        }
+
+        .code {
+            background: #ccc;
+            margin: 1px 2px;
+            padding: 1px 4px;
+            font-family: monospace;
+        }
+
+        .highlight {
+            background: #ff0;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Simple HTML</h1>
+    </header>
+    <div id="content">
+        <p>This is a <i>Simple</i>HTML File</p>
+        <div id="callout">
+            <p>This is as fancy as we'll get!</p>
+        </div>
+        <p>IDs (such as < span class="code">#content</span>)
+                are unique (there can only be one per page).</p>
+        <p>Classes such as < span class="code">.callout</span>)
+                can be used on many elements.</p>
+        <div id="callout2" class="callout fancy">
+            <p>Asingle HTML elemnet can have multiple classes.</p>
+        </div>
+        <button data-action="highlight" data-containing="unique">
+            Highlight paragraphs containing 'unique'
+        </button>
+        <button data-action="removeParaHighlights">
+            removeParaHighlights
+        </button>
+    </div>
+</body>
+<script>
+    function printDOM(node, prefix) {
+        this.prefix = prefix;
+        console.log(perfix + node.nodeName);
+        for (let i = 0; i < node.childNodes.length; i++) {
+            printDOM(node.childNodes[i], prefix + '\t');
+        }
+    }
+
+    function highlightParas(containing) {
+        if (typeof containing === 'string') {
+            containing = new RegExp(`\\b${containing}\\b`, 'i');
+            const paras = document.getElementById('p');
+            console.log(paras);
+            for (let p of paras) {
+                if (!containing.test(p.textContent)) continue;
+                p.classList.add('highlight');
+            }
+        }
+    }
+
+    function removeParaHighlights() {
+        const paras = document.querySelectorAll('p.highlight');
+        for (let p of paras) {
+            p.classList.remove('highlight');
+        }
+    }
+
+    const highlightAction = document.querySelectorAll('[data-action="highlight"]');
+    for (let a of highlightAction) {
+        a.addEventListener('click', evt => {
+            evt.preventDefault();
+            highlightAction(a.dataset.containing);
+        });
+    }
+
+    const removeParaHighlightActions = document.querySelectorAll('[data-set="removeHighlights"]');
+    for (let a of removeParaHighlightActions) {
+        a.addEventListener('click', evt => {
+            evt.preventDefault();
+            removeParaHighlights();
+        });
+    }
+</script>
+
+
+</html>
